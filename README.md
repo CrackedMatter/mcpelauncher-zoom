@@ -21,7 +21,7 @@ Download the mod from [releases](https://github.com/CrackedMatter/mcpelauncher-f
 Prerequisites:
 
 - Android NDK r27 or later. [Download](https://developer.android.com/ndk/downloads)
-- CMake 3.14 or later
+- CMake 3.21 or later
 
 Replace `/path/to/ndk` with the actual path to the Android NDK and `x86_64` with the desired ABI:
 

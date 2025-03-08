@@ -42,17 +42,17 @@ extern "C" [[gnu::visibility("default")]] void mod_init() {
 
     std::span<std::byte> range1, range2;
 
-    auto callback = [&](dl_phdr_info* info) {
-        if (auto h = dlopen(info->dlpi_name, RTLD_NOLOAD); dlclose(h), h != mcLib)
+    auto callback = [&](const dl_phdr_info& info) {
+        if (auto h = dlopen(info.dlpi_name, RTLD_NOLOAD); dlclose(h), h != mcLib)
             return 0;
-        range1 = {reinterpret_cast<std::byte*>(info->dlpi_addr + info->dlpi_phdr[1].p_vaddr), info->dlpi_phdr[1].p_memsz};
-        range2 = {reinterpret_cast<std::byte*>(info->dlpi_addr + info->dlpi_phdr[2].p_vaddr), info->dlpi_phdr[2].p_memsz};
+        range1 = {reinterpret_cast<std::byte*>(info.dlpi_addr + info.dlpi_phdr[1].p_vaddr), info.dlpi_phdr[1].p_memsz};
+        range2 = {reinterpret_cast<std::byte*>(info.dlpi_addr + info.dlpi_phdr[2].p_vaddr), info.dlpi_phdr[2].p_memsz};
         return 1;
     };
 
     dl_iterate_phdr(
         [](dl_phdr_info* info, size_t, void* data) {
-            return (*static_cast<decltype(callback)*>(data))(info);
+            return (*static_cast<decltype(callback)*>(data))(*info);
         },
         &callback);
 

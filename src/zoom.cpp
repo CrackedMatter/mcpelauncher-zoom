@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
-#include <glaze/glaze.hpp>
+#include <glaze/json.hpp>
 #include <print>
 #include <string>
 

@@ -6,7 +6,7 @@ A zoom mod for [mcpelauncher](https://minecraft-linux.github.io).
 ## Installation
 
 Create a `mods` directory in the directory of your mcpelauncher profile (e.g. `~/.local/share/mcpelauncher`) if you have not already done so.
-Download the mod from [releases](https://github.com/CrackedMatter/mcpelauncher-fullbright/releases) and move the file into the `mods` directory.
+Download the mod from [releases](https://github.com/CrackedMatter/mcpelauncher-zoom/releases) and move the file into the `mods` directory.
 
 
 ## Usage

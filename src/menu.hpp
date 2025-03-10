@@ -10,7 +10,7 @@ struct MenuEntryABI {
     MenuEntryABI* subentries     = nullptr;
 };
 
-struct control {
+struct ControlABI {
     int type = 0; // button
     union {
         struct {
@@ -53,5 +53,5 @@ struct control {
 };
 
 inline void (*addMenu)(size_t length, MenuEntryABI* entries);
-inline void (*showWindow)(const char* title, int isModal, void* user, void (*onClose)(void* user), int count, control* controls);
+inline void (*showWindow)(const char* title, int isModal, void* user, void (*onClose)(void* user), int count, ControlABI* controls);
 inline void (*closeWindow)(const char* title);

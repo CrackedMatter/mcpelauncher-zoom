@@ -110,7 +110,8 @@ void initialize() {
     menuSubEntries[0] = {
         .name  = "Settings",
         .click = [](void*) {
-            control controls[6];
+            ControlABI controls[6];
+
             controls[0].type           = 1;
             controls[0].data.sliderint = {
                 .label    = "Keybind behavior (0: hold, 1: toggle)",
@@ -183,14 +184,14 @@ void initialize() {
     menuSubEntries[1] = {
         .name  = "Change keybind",
         .click = [](void*) {
-            control keybindControl;
-            keybindControl.type      = 3;
-            keybindControl.data.text = {
+            ControlABI control;
+            control.type      = 3;
+            control.data.text = {
                 .label = "Press any key to change the zoom keybind",
                 .size  = 0,
             };
             changingZoomKeybind = true;
-            showWindow("Change zoom keybind", true, nullptr, [](void*) { changingZoomKeybind = false; }, 1, &keybindControl);
+            showWindow("Change zoom keybind", true, nullptr, [](void*) { changingZoomKeybind = false; }, 1, &control);
         },
     };
 

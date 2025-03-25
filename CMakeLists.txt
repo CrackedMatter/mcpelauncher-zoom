@@ -25,6 +25,8 @@ if(CMAKE_ANDROID_ARCH_ABI STREQUAL "x86_64")
     CPMAddPackage("gh:zyantific/zydis@4.1.1")
     CPMAddPackage("gh:cursey/safetyhook@0.6.5")
     target_link_libraries(mcpelauncherzoom PRIVATE safetyhook::safetyhook)
+elseif(NOT CMAKE_ANDROID_ARCH_ABI STREQUAL "arm64-v8a")
+    message(FATAL_ERROR "Unsupported ABI")
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")

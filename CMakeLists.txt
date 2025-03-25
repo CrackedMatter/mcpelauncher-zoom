@@ -27,4 +27,12 @@ if(CMAKE_ANDROID_ARCH_ABI STREQUAL "x86_64")
     target_link_libraries(mcpelauncherzoom PRIVATE safetyhook::safetyhook)
 endif()
 
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    target_compile_options(mcpelauncherzoom PRIVATE -flto)
+    target_link_options(mcpelauncherzoom PRIVATE
+            -flto -Wl,--version-script,${PROJECT_SOURCE_DIR}/map.txt -Wl,--no-undefined-version)
+    set_target_properties(mcpelauncherzoom PROPERTIES
+            LINK_DEPENDS ${PROJECT_SOURCE_DIR}/map.txt)
+endif()
+
 install(TARGETS mcpelauncherzoom LIBRARY DESTINATION mods)

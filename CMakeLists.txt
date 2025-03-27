@@ -16,9 +16,8 @@ add_library(mcpelauncherzoom SHARED
 
 target_compile_options(mcpelauncherzoom PRIVATE -Wall -Wextra -Wconversion -Wpedantic)
 
-#CPMAddPackage("gh:BasedInc/libhat@0.4.0")
-CPMAddPackage("gh:CrackedMatter/libhat#4f19ed72c2a3dc96ccd85cf344428035de53f22b") # hack fix for arm64
-CPMAddPackage("gh:stephenberry/glaze@5.0.0")
+CPMAddPackage("gh:BasedInc/libhat#7bca916dce54f3a6eb1697fa8bbcde0606740a7e")
+CPMAddPackage("gh:stephenberry/glaze@5.0.2")
 target_link_libraries(mcpelauncherzoom PRIVATE libhat::libhat glaze::glaze)
 
 if(CMAKE_ANDROID_ARCH_ABI STREQUAL "x86_64")

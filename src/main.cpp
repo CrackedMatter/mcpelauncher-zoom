@@ -67,7 +67,13 @@ extern "C" [[gnu::visibility("default")]] void mod_init() {
 
 #ifdef __x86_64__
     static SafetyHookInline localPlayerTurn_hook = safetyhook::create_inline(
-        hat::find_pattern(range1, "48 8D 74 24 ? 4C 89 FF E8 ? ? ? ? 49 8B 45 00 4C 89 EF"_sig).rel(9),
+        [&] -> std::byte* {
+            if (auto res = hat::find_pattern(range1, "41 57 41 56 41 55 41 54 53 48 81 EC 80 00 00 00 49 89 F6 49 89 FF 64 48 8B 04 25 28 00 00 00 48 89 44 24 78 48 8B B7"_sig, hat::scan_alignment::X16); res.has_result())
+                return res.get();
+            if (auto res = hat::find_pattern(range1, "48 8D 74 24 ? 4C 89 FF E8 ? ? ? ? 49 8B 45 00 4C 89 EF"_sig); res.has_result())
+                return res.rel(9);
+            return nullptr;
+        }(),
         +[](void* self, const Vec2& delta) {
             localPlayerTurn_hook.call<void, void*, const Vec2&>(self, getTurnDelta(delta));
         });

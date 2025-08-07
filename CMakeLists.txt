@@ -20,13 +20,13 @@ add_library(mcpelauncherzoom SHARED
 
 target_compile_options(mcpelauncherzoom PRIVATE -Wall -Wextra -Wconversion -Wpedantic)
 
-CPMAddPackage("gh:BasedInc/libhat#7bca916dce54f3a6eb1697fa8bbcde0606740a7e")
-CPMAddPackage("gh:stephenberry/glaze@5.0.2")
+CPMAddPackage("gh:BasedInc/libhat@0.6.0")
+CPMAddPackage("gh:stephenberry/glaze@5.5.5")
 target_link_libraries(mcpelauncherzoom PRIVATE libhat::libhat glaze::glaze)
 
 if(CMAKE_ANDROID_ARCH_ABI STREQUAL "x86_64")
     CPMAddPackage("gh:zyantific/zydis@4.1.1")
-    CPMAddPackage("gh:cursey/safetyhook@0.6.5")
+    CPMAddPackage("gh:cursey/safetyhook@0.6.9")
     target_link_libraries(mcpelauncherzoom PRIVATE safetyhook::safetyhook)
 endif()
 
